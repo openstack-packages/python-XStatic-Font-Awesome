@@ -57,7 +57,8 @@ ln -s %{_datadir}/fonts/fontawesome/*  %{buildroot}/%{python2_sitelib}/xstatic/p
 # use fontawesome-fonts-web for css, scss,
 for dir in css less scss ; do  
 rm -rf %{buildroot}/%{python2_sitelib}/xstatic/pkg/font_awesome/data/$dir
-ln -s %{_datadir}/font-awesome-web/$dir %{buildroot}/%{python2_sitelib}/xstatic/pkg/font_awesome/data/$dir
+# The wild card here matches the version of font-awesome installed, in F21 its not a problem (no version in path name)
+ln -s %{_datadir}/font-awesome-*/$dir %{buildroot}/%{python2_sitelib}/xstatic/pkg/font_awesome/data/$dir
 done
 
 
@@ -69,5 +70,8 @@ done
 %{python2_sitelib}/XStatic_Font_Awesome-%{version}-py%{python_version}-nspkg.pth
 
 %changelog
+* Thu Sep 11 2014 Derek Higgins <derekh@redhat.com> - XXX
+- Temp Delorean Hack
+
 * Wed Sep 10 2014 Matthias Runge <mrunge@redhat.com> - 4.1.0.0-1
 - Initial package.
